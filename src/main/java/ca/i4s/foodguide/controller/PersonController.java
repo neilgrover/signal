@@ -27,7 +27,7 @@ public class PersonController {
         return personService
             .get(username)
             .orElseThrow(() ->
-                new EntityNotFoundException());
+                new EntityNotFoundException(Person.class));
     }
 
     @PostMapping("/person")

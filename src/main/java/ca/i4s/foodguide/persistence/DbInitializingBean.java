@@ -40,7 +40,6 @@ public class DbInitializingBean implements InitializingBean {
     private static final String FOOD_STATEMENTS_CSV_PATH = "/data/fg_directional_satements-en_ONPP.csv";
     private static final String FOOD_SERVINGS_CSV_PATH = "/data/servings_per_day-en_ONPP.csv";
     private static final Pattern UNSIGNED_NUMBER_PATTERN = Pattern.compile("[0-9]+");
-    private static final Integer DEFAULT_MAX_AGE = 100;
 
     private FoodGroupDao foodGroupDao;
     private FoodGroupCategoryDao foodGroupCategoryDao;
@@ -122,11 +121,11 @@ public class DbInitializingBean implements InitializingBean {
     private void readFoodGroupStatements(Consumer<FoodGroupStatement> foodGroupStatementConsumer) throws IOException {
         readRows(FOOD_STATEMENTS_CSV_PATH, row -> {
             String foodGroupId = row[0];
-            String statement = row[1];
+            String statementText = row[1];
 
             FoodGroupStatement foodGroupStatement = FoodGroupStatement.builder()
                 .foodGroupId(foodGroupId)
-                .statement(statement)
+                .statementText(statementText)
                 .build();
 
             foodGroupStatementConsumer.accept(foodGroupStatement);
