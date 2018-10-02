@@ -1,6 +1,8 @@
 package ca.i4s.foodguide.model.response;
 
 import ca.i4s.foodguide.model.Gender;
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.Lists;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +16,10 @@ public class Menu {
     private String username;
     private Integer age;
     private Gender gender;
-    private Collection<FoodGroup> foodGroups = new ArrayList<>();
+    private Collection<FoodGroup> foodGroups;
 
     public void addFoodGroup(FoodGroup foodGroup) {
+        foodGroups = MoreObjects.firstNonNull(foodGroups, Lists.newArrayList());
         foodGroups.add(foodGroup);
     }
 
@@ -27,9 +30,10 @@ public class Menu {
         private String directionalStatement;
         private Integer minServing;
         private Integer maxServing;
-        private Collection<FoodGroupCategory> foodGroupCategories = new ArrayList<>();
+        private Collection<FoodGroupCategory> foodGroupCategories;
 
         public void addFoodGroupCategory(FoodGroupCategory foodGroupCategory) {
+            foodGroupCategories = MoreObjects.firstNonNull(foodGroupCategories, new ArrayList<>());
             foodGroupCategories.add(foodGroupCategory);
         }
 
@@ -37,9 +41,10 @@ public class Menu {
         public static class FoodGroupCategory {
 
             private String description;
-            private Collection<MenuItem> menuItems = new ArrayList<>();
+            private Collection<MenuItem> menuItems;
 
             public void addMenuItem(MenuItem menuItem) {
+                menuItems = MoreObjects.firstNonNull(menuItems, new ArrayList<>());
                 menuItems.add(menuItem);
             }
 
@@ -49,7 +54,6 @@ public class Menu {
                 private String name;
                 private String servingSize;
             }
-
         }
     }
 }
