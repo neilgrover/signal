@@ -155,7 +155,7 @@ public class DbInitializingBean implements InitializingBean {
             }
 
             Matcher servingMatcher = UNSIGNED_NUMBER_PATTERN.matcher(servings);
-            while(servingMatcher.find() && null == dailyServing.getMaxServing()) {
+            while (servingMatcher.find() && null == dailyServing.getMaxServing()) {
                 int serving = Integer.parseInt(servingMatcher.group());
                 if (null == dailyServing.getMinServing()) {
                     dailyServing.setMinServing(serving);

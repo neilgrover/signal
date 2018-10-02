@@ -32,6 +32,7 @@ public class FamilyController {
     /**
      * save a new family by providing an array of usernames. CAUTION this will overwrite
      * existing families if usernames are already assigned. This could obviously be improved.
+     *
      * @param familyRequest includes an array of "usernames" for which a family is to be created.
      * @return a family represented by the usersnames provided
      */

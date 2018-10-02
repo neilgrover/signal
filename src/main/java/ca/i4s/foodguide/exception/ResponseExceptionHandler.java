@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = { JdbcSQLException.class })
+    @ExceptionHandler(value = {JdbcSQLException.class})
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, String.format("An internal error occurred: %s", ex.getClass().getSimpleName()),
             new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);

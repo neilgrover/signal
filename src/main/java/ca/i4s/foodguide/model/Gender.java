@@ -14,10 +14,6 @@ public enum Gender {
         this.symbol = symbol;
     }
 
-    public String toString() {
-        return symbol;
-    }
-
     public static Gender valueOfSymbol(String symbol) {
         Gender gender;
         switch (symbol.toUpperCase()) {
@@ -31,5 +27,9 @@ public enum Gender {
                 gender = Gender.valueOf(symbol.toUpperCase());
         }
         return gender;
+    }
+
+    public String toString() {
+        return symbol;
     }
 }

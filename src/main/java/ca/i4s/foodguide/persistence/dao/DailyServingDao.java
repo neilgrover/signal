@@ -24,8 +24,8 @@ public class DailyServingDao implements FoodGuideDao<DailyServing, Integer> {
             "values (:foodGroupId, :gender, :minAge, :maxAge, :minServing, :maxServing)";
     private static final String SELECT_SQL =
         "select id, date_created, date_updated, food_group_id, gender, min_age, max_age, min_serving, max_serving " +
-        "from daily_serving " +
-        "where id = :id ";
+            "from daily_serving " +
+            "where id = :id ";
     private static final String SELECT_FOR_AGE_AND_GENDER_SQL =
         "select id, date_created, date_updated, food_group_id, gender, min_age, max_age, min_serving, max_serving " +
             "from daily_serving " +

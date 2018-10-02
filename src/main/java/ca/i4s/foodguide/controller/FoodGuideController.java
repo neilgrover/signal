@@ -1,8 +1,8 @@
 package ca.i4s.foodguide.controller;
 
 import ca.i4s.foodguide.exception.EntityNotFoundException;
-import ca.i4s.foodguide.model.response.Menu;
 import ca.i4s.foodguide.model.Person;
+import ca.i4s.foodguide.model.response.Menu;
 import ca.i4s.foodguide.service.MenuService;
 import ca.i4s.foodguide.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;

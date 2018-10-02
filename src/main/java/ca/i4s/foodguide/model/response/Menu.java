@@ -10,7 +10,9 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Getter @Setter @Builder
+@Getter
+@Setter
+@Builder
 public class Menu {
 
     private String username;
@@ -23,7 +25,9 @@ public class Menu {
         foodGroups.add(foodGroup);
     }
 
-    @Getter @Setter @Builder
+    @Getter
+    @Setter
+    @Builder
     public static class FoodGroup {
 
         private String name;
@@ -37,7 +41,9 @@ public class Menu {
             foodGroupCategories.add(foodGroupCategory);
         }
 
-        @Getter @Setter @Builder
+        @Getter
+        @Setter
+        @Builder
         public static class FoodGroupCategory {
 
             private String description;
@@ -48,7 +54,9 @@ public class Menu {
                 menuItems.add(menuItem);
             }
 
-            @Getter @Setter @Builder
+            @Getter
+            @Setter
+            @Builder
             public static class MenuItem {
 
                 private String name;

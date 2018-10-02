@@ -30,6 +30,7 @@ I would have loved to spend more time on this! It's a "sky is the limit" type of
 - The family menu API is pretty un-smart. It only lists the menu for each user. I should instead optimize the menu to reduce the number of unique foods.
 - I would have liked to version my APIs
 - I would have liked to introduce some security (OAuth etc)
+- The application is completely un-optimized. The SQL queries could be much improved (more joins instead of querying individual entities). For the sake of time I implemented everything as it fit a pattern, not necessarily how it would be written for performance.
 
 ### Running Application
 
