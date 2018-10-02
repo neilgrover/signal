@@ -1,5 +1,6 @@
 /******************** Add Table: daily_serving ************************/
 
+DROP TABLE daily_serving IF EXISTS;
 /* Build Table Structure */
 CREATE TABLE daily_serving
 (
@@ -17,6 +18,7 @@ CREATE TABLE daily_serving
 
 /******************** Add Table: family ************************/
 
+DROP TABLE family IF EXISTS;
 /* Build Table Structure */
 CREATE TABLE family
 (
@@ -28,6 +30,7 @@ CREATE TABLE family
 
 /******************** Add Table: food ************************/
 
+DROP TABLE food IF EXISTS;
 /* Build Table Structure */
 CREATE TABLE food
 (
@@ -42,6 +45,7 @@ CREATE TABLE food
 
 /******************** Add Table: food_group ************************/
 
+DROP TABLE food_group IF EXISTS;
 /* Build Table Structure */
 CREATE TABLE food_group
 (
@@ -58,6 +62,7 @@ ALTER TABLE food_group ADD CONSTRAINT pkfood_group
 
 /******************** Add Table: food_group_category ************************/
 
+DROP TABLE food_group_category IF EXISTS;
 /* Build Table Structure */
 CREATE TABLE food_group_category
 (
@@ -76,6 +81,7 @@ ALTER TABLE food_group_category ADD CONSTRAINT pkfood_group_category
 /******************** Add Table: food_group_statement ************************/
 
 /* Build Table Structure */
+DROP TABLE food_group_statement IF EXISTS;
 CREATE TABLE food_group_statement
 (
 	id INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
@@ -88,6 +94,7 @@ CREATE TABLE food_group_statement
 
 /******************** Add Table: person ************************/
 
+DROP TABLE person IF EXISTS;
 /* Build Table Structure */
 CREATE TABLE person
 (

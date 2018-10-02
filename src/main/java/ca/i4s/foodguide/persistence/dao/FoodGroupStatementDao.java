@@ -1,6 +1,5 @@
 package ca.i4s.foodguide.persistence.dao;
 
-import ca.i4s.foodguide.model.DailyServing;
 import ca.i4s.foodguide.model.FoodGroupStatement;
 import ca.i4s.foodguide.persistence.Sql;
 import org.slf4j.Logger;

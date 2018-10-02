@@ -6,15 +6,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Collection;
+
 @Getter
 @Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonRequest {
+public class FamilyRequest {
 
-    private String username;
-    private Integer familyId;
-    private String gender;
-    private Integer age;
+    private Collection<String> usernames;
 }

@@ -10,6 +10,7 @@ import org.sql2o.Connection;
 import org.sql2o.Query;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
 
@@ -32,6 +33,11 @@ public class PersonDao implements FoodGuideDao<Person, String> {
     private static final String SELECT_SQL =
         "select username, family_id as familyId, gender, age, date_created, date_updated " +
             "from person where username = :username";
+
+    private static final String SELECT_FOR_FAMILY_ID_SQL =
+        "select username, family_id as familyId, gender, age, date_created, date_updated " +
+            "from person where family_id = :familyId";
+
 
     private Sql sql;
 
@@ -97,6 +103,20 @@ public class PersonDao implements FoodGuideDao<Person, String> {
                 .addColumnMapping("date_created", "dateCreated")
                 .addColumnMapping("date_updated", "dateUpdated")
                 .executeAndFetchFirst(Person.class));
+        }
+    }
+
+    public Collection<Person> getForFamilyId(Integer familyId) {
+        LOG.info("Retrieving people for family id: " + familyId);
+        try (Connection conn = sql.open();
+             Query query = conn.createQuery(SELECT_FOR_FAMILY_ID_SQL)
+        ) {
+            return query
+                .addParameter("familyId", familyId)
+                .addColumnMapping("family_id", "familyId")
+                .addColumnMapping("date_created", "dateCreated")
+                .addColumnMapping("date_updated", "dateUpdated")
+                .executeAndFetch(Person.class);
         }
     }
 }
