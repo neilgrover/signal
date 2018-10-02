@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class FoodGuideController {
 
@@ -23,11 +25,20 @@ public class FoodGuideController {
     }
 
     @GetMapping("/menu/{username}")
-    public Menu get(@PathVariable(value = "username") String username) {
+    public Menu getUserMenu(@PathVariable(value = "username") String username) {
         Person person = personService
             .get(username)
             .orElseThrow(() ->
                 new EntityNotFoundException(Person.class));
-        return menuService.getMenu(person);
+        return menuService.getPersonMenu(person);
+    }
+
+    @GetMapping("/family-menu/{username}")
+    public List<Menu> getFamilyMenu(@PathVariable(value = "username") String username) {
+        Person person = personService
+            .get(username)
+            .orElseThrow(() ->
+                new EntityNotFoundException(Person.class));
+        return menuService.getFamilyMenu(person);
     }
 }

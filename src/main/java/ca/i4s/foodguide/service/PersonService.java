@@ -3,11 +3,12 @@ package ca.i4s.foodguide.service;
 import ca.i4s.foodguide.model.Person;
 import ca.i4s.foodguide.persistence.dao.PersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Optional;
 
-@Component
+@Service
 public class PersonService {
 
     private PersonDao personDao;
@@ -31,5 +32,9 @@ public class PersonService {
 
     public Optional<Person> get(String username) {
         return personDao.get(username);
+    }
+
+    public Collection<Person> getForFamilyId(Integer familyId) {
+        return personDao.getForFamilyId(familyId);
     }
 }

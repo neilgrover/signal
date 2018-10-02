@@ -2,6 +2,7 @@ package ca.i4s.foodguide.service;
 
 import ca.i4s.foodguide.exception.EntityNotFoundException;
 import ca.i4s.foodguide.model.DailyServing;
+import ca.i4s.foodguide.model.Family;
 import ca.i4s.foodguide.model.Food;
 import ca.i4s.foodguide.model.FoodGroup;
 import ca.i4s.foodguide.model.FoodGroupCategory;
@@ -15,15 +16,19 @@ import ca.i4s.foodguide.persistence.dao.FoodGroupCategoryDao;
 import ca.i4s.foodguide.persistence.dao.FoodGroupDao;
 import ca.i4s.foodguide.persistence.dao.FoodGroupStatementDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Component
+@Service
 public class MenuService {
 
+    // TODO: these should all be services instead of DAO's but I'm out of time to write the boiler code.
+    private FamilyService familyService;
     private DailyServingDao dailyServingDao;
     private FoodGroupDao foodGroupDao;
     private FoodGroupStatementDao foodGroupStatementDao;
@@ -35,12 +40,14 @@ public class MenuService {
                        FoodGroupDao foodGroupDao,
                        FoodGroupStatementDao foodGroupStatementDao,
                        FoodGroupCategoryDao foodGroupCategoryDao,
-                       FoodDao foodDao) {
+                       FoodDao foodDao,
+                       FamilyService familyService) {
         this.dailyServingDao = dailyServingDao;
         this.foodGroupDao = foodGroupDao;
         this.foodGroupStatementDao = foodGroupStatementDao;
         this.foodGroupCategoryDao = foodGroupCategoryDao;
         this.foodDao = foodDao;
+        this.familyService = familyService;
     }
 
     /**
@@ -49,7 +56,7 @@ public class MenuService {
      * @param person
      * @return a menu that picks random foods from each food group according to recommended serving count
      */
-    public Menu getMenu(Person person) {
+    public Menu getPersonMenu(Person person) {
         Integer age = person.getAge();
         Gender gender = person.getGender();
         Menu menu = Menu.builder()
@@ -101,6 +108,17 @@ public class MenuService {
         });
 
         return menu;
+    }
+
+    public List<Menu> getFamilyMenu(Person person) {
+        Family family = familyService.get(person.getUsername())
+            .orElseThrow(() -> new EntityNotFoundException(Family.class));
+
+        List<Menu> familyMenus = family.getPeople().stream()
+            .map(this::getPersonMenu)
+            .collect(Collectors.toList());
+
+        return familyMenus;
     }
 
     /**

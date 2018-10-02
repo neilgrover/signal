@@ -3,7 +3,6 @@ package ca.i4s.foodguide.service;
 import ca.i4s.foodguide.model.Gender;
 import ca.i4s.foodguide.model.Person;
 import ca.i4s.foodguide.model.response.Menu;
-import ca.i4s.foodguide.service.MenuService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +38,7 @@ public class MenuServiceTests {
 
     @Test
     public void testPersonMenu() {
-        Menu menu = menuService.getMenu(person);
+        Menu menu = menuService.getPersonMenu(person);
 
         assertNotNull(menu);
         assertEquals(menu.getUsername(), person.getUsername());
