@@ -4,7 +4,7 @@
 CREATE TABLE daily_serving
 (
 	id INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	cate_created TIMESTAMP DEFAULT now() NOT NULL,
+	date_created TIMESTAMP DEFAULT now() NOT NULL,
 	date_updated TIMESTAMP DEFAULT now() NOT NULL,
 	food_group_id CHAR(2) NOT NULL,
 	gender CHAR(1) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE daily_serving
 CREATE TABLE family
 (
 	id INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	cate_created TIMESTAMP DEFAULT now() NOT NULL,
+	date_created TIMESTAMP DEFAULT now() NOT NULL,
 	date_updated TIMESTAMP DEFAULT now() NOT NULL
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE food
 	food_group_category_id INTEGER UNSIGNED NOT NULL,
 	name TEXT NOT NULL,
 	serving_size TEXT NOT NULL,
-	cate_created TIMESTAMP DEFAULT now() NOT NULL,
+	date_created TIMESTAMP DEFAULT now() NOT NULL,
 	date_updated TIMESTAMP DEFAULT now() NOT NULL
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE food_group
 (
 	id CHAR(2) NOT NULL,
 	name TEXT NOT NULL,
-	cate_created TIMESTAMP DEFAULT now() NOT NULL,
+	date_created TIMESTAMP DEFAULT now() NOT NULL,
 	date_updated TIMESTAMP DEFAULT now() NOT NULL
 );
 
@@ -62,7 +62,7 @@ ALTER TABLE food_group ADD CONSTRAINT pkfood_group
 CREATE TABLE food_group_category
 (
 	id INTEGER UNSIGNED NOT NULL,
-	cate_created TIMESTAMP DEFAULT now() NOT NULL,
+	date_created TIMESTAMP DEFAULT now() NOT NULL,
 	date_updated TIMESTAMP DEFAULT now() NOT NULL,
 	name TEXT NOT NULL,
 	food_group_id CHAR(2) NOT NULL
@@ -79,7 +79,7 @@ ALTER TABLE food_group_category ADD CONSTRAINT pkfood_group_category
 CREATE TABLE food_group_statement
 (
 	id INTEGER UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	cate_created TIMESTAMP DEFAULT now() NOT NULL,
+	date_created TIMESTAMP DEFAULT now() NOT NULL,
 	date_updated TIMESTAMP DEFAULT now() NOT NULL,
 	food_group_id CHAR(2) NOT NULL,
 	statement_text TEXT NOT NULL

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id", "foodGroupId", "name"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "foodGroupId", "name"})
 public class FoodGroupCategory extends FoodGuideModel {
 
     private Integer id;

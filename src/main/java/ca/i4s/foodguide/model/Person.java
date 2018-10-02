@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"username", "familyId", "gender", "age"})
+@EqualsAndHashCode(callSuper = false, of = {"username", "familyId", "gender", "age"})
 public class Person extends FoodGuideModel {
 
     private String username;

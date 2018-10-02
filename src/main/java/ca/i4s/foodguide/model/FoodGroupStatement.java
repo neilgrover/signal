@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id", "foodGroupId", "statement"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "foodGroupId", "statementText"})
 public class FoodGroupStatement extends FoodGuideModel {
 
     private Integer id;
     private String foodGroupId;
-    private String statement;
+    private String statementText;
 }

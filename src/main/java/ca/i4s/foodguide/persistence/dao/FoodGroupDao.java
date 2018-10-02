@@ -20,9 +20,10 @@ public class FoodGroupDao implements FoodGuideDao<FoodGroup, String> {
     private static final String INSERT_SQL =
         "insert into food_group (id, name) " +
             "values (:id, :name)";
-    private static final String UPDATE_SQL = "";
-    private static final String DELETE_SQL = "";
-    private static final String SELECT_SQL = "";
+    private static final String SELECT_SQL =
+        "select id, name, date_created, date_updated " +
+            "from food_group " +
+            "where id = :foodGroupId";
 
     private Sql sql;
 
@@ -45,6 +46,21 @@ public class FoodGroupDao implements FoodGuideDao<FoodGroup, String> {
     }
 
     @Override
+    public Optional<FoodGroup> get(String id) {
+        LOG.info("Retrieving food group for id: " + id);
+        try (Connection conn = sql.open();
+             Query query = conn.createQuery(SELECT_SQL)
+        ) {
+            return Optional.ofNullable(query
+                .addParameter("foodGroupId", id)
+                .addColumnMapping("date_created", "dateCreated")
+                .addColumnMapping("date_updated", "dateUpdated")
+                .addColumnMapping("food_group", "foodGroup")
+                .executeAndFetchFirst(FoodGroup.class));
+        }
+    }
+
+    @Override
     public void update(FoodGroup model) {
         // TODO implement food-group UPDATE
     }
@@ -52,11 +68,5 @@ public class FoodGroupDao implements FoodGuideDao<FoodGroup, String> {
     @Override
     public void delete(String id) {
         // TODO implement food-group DELETE
-    }
-
-    @Override
-    public Optional<FoodGroup> get(String id) {
-        // TODO implement food-group GET
-        return Optional.empty();
     }
 }

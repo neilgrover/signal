@@ -1,7 +1,7 @@
 package ca.i4s.foodguide.controller;
 
 import ca.i4s.foodguide.exception.EntityNotFoundException;
-import ca.i4s.foodguide.model.Menu;
+import ca.i4s.foodguide.model.response.Menu;
 import ca.i4s.foodguide.model.Person;
 import ca.i4s.foodguide.service.MenuService;
 import ca.i4s.foodguide.service.PersonService;
@@ -27,7 +27,7 @@ public class FoodGuideController {
         Person person = personService
             .get(username)
             .orElseThrow(() ->
-                new EntityNotFoundException());
+                new EntityNotFoundException(Person.class));
         return menuService.getMenu(person);
     }
 }

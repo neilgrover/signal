@@ -10,6 +10,7 @@ import org.sql2o.Connection;
 import org.sql2o.Query;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Collection;
 import java.util.Optional;
 
 @Repository
@@ -20,9 +21,10 @@ public class FoodGroupCategoryDao implements FoodGuideDao<FoodGroupCategory, Int
     private static final String INSERT_SQL =
         "insert into food_group_category (id, name, food_group_id) " +
             "values (:id, :name, :foodGroupId)";
-    private static final String UPDATE_SQL = "";
-    private static final String DELETE_SQL = "";
-    private static final String SELECT_SQL = "";
+    private static final String SELECT_BY_FOOD_GROUP_CATEGORY_SQL =
+        "select id, date_created, date_updated, name, food_group_id " +
+            "from food_group_category " +
+            "where food_group_id = :foodGroupId";
 
     private Sql sql;
 
@@ -42,6 +44,20 @@ public class FoodGroupCategoryDao implements FoodGuideDao<FoodGroupCategory, Int
                 .addParameter("name", model.getName())
                 .addParameter("foodGroupId", model.getFoodGroupId())
                 .executeUpdate();
+        }
+    }
+
+    public Collection<FoodGroupCategory> getByFoodGroupId(String foodGroupId) {
+        LOG.info("Retrieving food group categories for food group id: " + foodGroupId);
+        try (Connection conn = sql.open();
+             Query query = conn.createQuery(SELECT_BY_FOOD_GROUP_CATEGORY_SQL)
+        ) {
+            return query
+                .addParameter("foodGroupId", foodGroupId)
+                .addColumnMapping("date_created", "dateCreated")
+                .addColumnMapping("date_updated", "dateUpdated")
+                .addColumnMapping("food_group_id", "foodGroupId")
+                .executeAndFetch(FoodGroupCategory.class);
         }
     }
 

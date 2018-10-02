@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id", "foodGroupId", "gender", "minAge", "maxAge", "minServing", "maxServing"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "foodGroupId", "gender", "minAge", "maxAge", "minServing", "maxServing"})
 public class DailyServing extends FoodGuideModel {
 
     private Integer id;
@@ -20,4 +20,8 @@ public class DailyServing extends FoodGuideModel {
     private Integer maxAge;
     private Integer minServing;
     private Integer maxServing;
+
+    public String toString() {
+        return String.format("min serving: %s, max serving: %s", minServing, maxServing);
+    }
 }

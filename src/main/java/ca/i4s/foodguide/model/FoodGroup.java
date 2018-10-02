@@ -10,9 +10,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = {"id", "name"})
+@EqualsAndHashCode(callSuper = false, of = {"id", "name"})
 public class FoodGroup extends FoodGuideModel {
 
     private String id;
     private String name;
+
+    public String toString() {
+        return name;
+    }
 }
